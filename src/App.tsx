@@ -18,17 +18,20 @@ function App() {
         <div>
           
         </div>
-      <h1 className='text-5xl font-bold'>Mi DUI es valido?</h1>
+      <h1 data-testid='title-test' className='text-5xl font-bold'>Mi DUI es valido?</h1>
       <form className='flex flex-col gap-5 items-center' onSubmit={(e)=>{e.preventDefault(); onSubmit()}}>
-        <input 
+        <input data-testid="input-dui"
+        type="text"
         placeholder='000000000' 
         className='rounded p-2 w-full'
         value= {value}
         onChange={(e)=>{
           setValue(e.target.value)
         }}/>
-        <button className='bg-blue-700 text-white w-auto py-2 px-3 rounded'>Validar</button>
+        <button data-testid="button-form" className='bg-blue-700 text-white w-auto py-2 px-3 rounded'>Validar</button>
       </form>
+      {value && !duiValidator(value) && <span className='text-red-600' data-testid="error-msg">DUI Invalido!.</span>}
+      {value && duiValidator(value) && <span className='text-green-600' data-testid="success-msg">DUI Valido!.</span>}
       </div>
     </div>
 
